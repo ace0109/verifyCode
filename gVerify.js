@@ -48,10 +48,14 @@
 		
 		/**生成验证码**/
 		refresh: function() {
+			this.options.code = "";
 			var canvas = document.getElementById(this.options.canvasId);
 			if(canvas.getContext) {
 				var ctx = canvas.getContext('2d');
+			}else{
+				return;
 			}
+			
 			ctx.textBaseline = "middle";
 
 			ctx.fillStyle = randomColor(180, 240);
@@ -109,6 +113,7 @@
 			if(code == v_code){
 				return true;
 			}else{
+				this.refresh();
 				return false;
 			}
 		}
